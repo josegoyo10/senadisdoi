@@ -1,0 +1,180 @@
+
+Descripción:
+===========
+	A continuación se describen las consideraciones que se debe de tener al momento de instalar o desplegar la aplicación, 
+	además también se mencionan otros aspectos que pudiesen ser útiles.
+ 
+29/03/2017 - José Escalante
+===========================
+
+Acciones a ejecutar:
+
+- Ejecutar los siguientes scritps:
+	
+	- alter_29-03-2017.sql				--> Corrección delete FK. Creación de FOREIGNKEY, cambio tipos de tablas.
+	- comentarios_tablas-29-03-2017.sql	--> Corrección nombre tabla posts. Se agregan comentarios a los campos.	
+
+- Cambiar el usuario de correo del archivo .env que esta en el directorio de la aplicación y el .zip:
+	MAIL_USERNAME=colocar_correo_produccion@gmail.com
+	MAIL_PASSWORD=colocar_clave_produccion
+
+- En el .env colocar en false la constante APP_DEBUG:
+	APP_DEBUG=false
+
+- Al comprimir el .zip hacerlo sin usar un sub-directorio, es decir, todos los archivos van en la raiz.
+
+Cambios realizados en este release:	
+	- Correción Comentarios a tabla posts.
+	- Borrar FK antes de crearlo.
+	- Cambios en el usuario del correo de producción.
+
+17/03/2017 - José Escalante
+===========================
+
+Acciones a ejecutar:
+
+- Ejecutar los siguientes scritps:
+	
+	- alter_16032017.sql				--> Creación de FOREIGNKEY, cambio tipos de tablas.
+	- comentarios_campos-17-03-2017.sql	--> Se agregan comentarios a las tablas.
+	- comentarios_tablas-17-03-2017.sql	--> Se agregan comentarios a los campos.	
+
+- Desplegar el archivo .zip con el sistema sin .git y los archivos en la raiz (sin sub-directorio).
+
+Cambios realizados en este release:
+	
+	- Comentarios a tablas y campos.
+	- Creación de FOREIGNKEY, cambio tipos de tablas.
+	- Cambio de librerias de graficos. Se agrego la librería Highcharts en los reportes.
+	- Cambios de accesibilidad (ALT en imagenes y enlaces).
+	- Se incluyen manuales de usuario en el menú de acuerdo al rol.
+	- Se agrego filtro por regiones en los reportes.
+	- Se agregó validación al eliminar convenios con encuestas respondidas.
+
+
+09/03/2017 - José Escalante
+===========================
+
+Acciones a ejecutar:
+
+- Ejecutar los alter que se indican en el el archivo alter_01032017.sql.
+
+- Ejecutar el archivo datos_comuna_provincia.sql para actualizar las columnas comuna y provincia en la tabla institucion.
+
+- En el .env definir las ruta donde se ubicarán los archivos de noticias y de medios de verificación.
+	APP_DIR_MEDIOS_VERIFICACION="/var/www/html/public/uploads/"
+	APP_URL_MEDIOS_VERIFICACION="/uploads/"
+
+- En el .env definir la constante para la paginación: 
+	APP_REG_PAG=10 
+
+- En el .env configurar los parametros para envio de correos:
+	MAIL_DRIVER=smtp
+	MAIL_HOST=smtp.gmail.com
+	MAIL_PORT=587
+	MAIL_USERNAME=ejemplo@gmail.com
+	MAIL_PASSWORD=123456
+	MAIL_ENCRYPTION=tls
+
+- Al pasar a producción borrar el directorio .git.
+
+Cambios realizados en este release:
+
+	- Graficas con filtros por provincia, períodos, factores, dimensiones. Se agrego pomedio.
+
+	- Filtro en el dashboard por períodos
+
+	- Administración de convenios y períodos.
+	
+	- Plugins ver codigo HTML en noticias.
+
+	- Administración de encuestas, dimensiones, factores, preguntas, clonación de encuestas.
+
+	- Cambios en tamaños de gráficos y leyendas.
+	
+	- Cambios de accesibilidad.
+
+	- Creación de roles Otros Usuario SENADIS, Otro Usuario Municipal.
+
+	- Reemplazo del simbolo # por N°.
+
+
+
+23/02/2017 - José Escalante
+===========================
+
+- Ejecutar los alter que se indican en el el archivo .sql, tomarlos desde el repositorio de la base datos.
+
+- En el .env definir las ruta donde se ubicarán los archivos de noticias y de medios de verificación.
+	APP_DIR_MEDIOS_VERIFICACION="/home/usuario/senadis2/public/uploads/"
+	APP_URL_MEDIOS_VERIFICACION="/uploads/"
+
+- En el .env definir la constante para la paginación: 
+	APP_REG_PAG=10 
+
+- En el .env configurar los parametros para envio de correos:
+	MAIL_DRIVER=smtp
+	MAIL_HOST=smtp.gmail.com
+	MAIL_PORT=587
+	MAIL_USERNAME=ejemplo@gmail.com
+	MAIL_PASSWORD=123456
+	MAIL_ENCRYPTION=tls
+
+- En el .env colocar en false la constante APP_DEBUG:
+	APP_DEBUG=false
+
+- Al pasar a producción borrar el directorio .git.
+
+- Se recomienda tratar en la medida de los posible no ejecutar composer update para evitar posibles 
+	incompatibilidades con las actualizaciones.
+
+- En caso de ejecutar composer update laravel actualizará los cambios realizados en los archivos 
+	que se mencionan para lo cual deberán volver actualizarlos y asi enviar los correos en 
+	español al momento de recuperar contraseña:
+	
+	/vendor/laravel/framework/src/Illuminate/Notifications/Messages/MailMessage.php
+	    public $view = [
+		//'notifications::email',
+		//'notifications::email-plain',
+		// Se usa las vistas de correos en español. jose.escalante
+		'mails.resetPassword', 
+		'mails.email-plain', 
+	    ];
+
+
+	/vendor/laravel/framework/src/Illuminate/Auth/Notifications/ResetPassword.php
+	
+		public function toMail($notifiable)
+		    {
+			return (new MailMessage)
+			    //->line('You are receiving this email because we received a password reset request for your account.')
+			    //->action('Reset Password', url('password/reset', $this->token))
+			    //->line('If you did not request a password reset, no further action is required.');
+			    // Se usa las vistas de correos en español. jose.escalante
+			    ->line('Usted esta recibiendo este correo porque recibimos un requerimiento para reiniciar la contraseña de su cuenta.') 
+			    ->action('Reiniciar su contraseña', url('password/reset', $this->token)) 
+			    ->line('Si no solicitó un restablecimiento de contraseña, no se requiere realizar la acción.'); 
+		 
+		    }
+
+	/resources/views/vendor/adminlte/layouts/partials/sidebar.blade.php
+
+		Colocar en comentario:
+
+		{{-- <li class="header">{{ trans('adminlte_lang::message.header') }}</li> --}}
+
+- Modificar el php.ini:
+
+	post_max_size = 400M
+	max_file_uploads = 200
+
+- Se recomienda habilitar los logs de errores de php y apache. Los logs de laravel 
+	los pueden 	verificar en:
+	/storage/logs/laravel.log
+
+- Para hacer los despliegues en producción se debe tener precaución de respaldar los archivos de noticias y medios de verificación.
+
+- Los archivos fuentes de las imágenes del login se encuentran en :
+	/public/img/ministerio
+	
+	Estos archivos son editables con Gimp.

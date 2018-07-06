@@ -1,0 +1,1 @@
+<img src="/img/ministerio/bar_gob.gif" style="margin-left: 50px; margin-bottom: 10px;">

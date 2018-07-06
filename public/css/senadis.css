@@ -1,0 +1,203 @@
+/*
+Descripción: 
+          Se incluye estilos css para SENADIS.
+          - Si desea agregar más estilos hacerlo al inicio.
+
+Autor:    José Rodríguez, José Escalante.
+Empresa:  Kibernum.
+Fecha:    17/02/2017.
+*/
+.fondo_gob {
+  background-image: url('/img/ministerio/fondo_gob.png');
+  width: 230px;
+  height: 56px;
+  padding-top: 18px; 
+  padding-left: 18px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-family: arial;
+  font-weight: bold;
+  margin-right:auto;
+  margin-left: auto;
+}
+
+.fondo_login {
+  background-color: #fff !important;
+}
+.margin_box_login {
+  margin-top: 0px !important;
+}
+
+.texto_negrita {
+  font-size:14px;
+  /* font-weight: bold; */
+}
+
+.modal_encuesta {
+  display: none;
+  overflow: hidden;
+  position: fixed;
+  top: 100;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2000 !important;
+  -webkit-overflow-scrolling: touch;
+  outline: 0;
+}
+
+/* Boton para subir archivos */
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+/* Fondo de los input y los textarea  */
+.form-control {
+    color: #000 !important;
+}
+
+/* Estilo de las pestañas */
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+    color: #3a87b5 !important;
+    background-color: #e8ecef !important;
+}
+.nav-tabs li > a:hover {
+    background-color: #e8ecef !important;
+    color: #000 !important;
+}
+
+
+.texto_normal{
+
+  font-size: 12px;
+  font-family: 'Oswald', sans-serif;
+}
+
+.pond_total{
+ font-size: 12px;
+ font-weight: bold;
+
+}
+
+/* Fondo mensaje respuesta */
+.direct-chat-text-respuesta {
+  background : #E6F8E0 !important;
+}
+
+
+.glyphicon-refresh-animate {
+    -animation: spin .7s infinite linear;
+    -webkit-animation: spin2 .7s infinite linear;
+}
+
+@-webkit-keyframes spin2 {
+    from { -webkit-transform: rotate(0deg);}
+    to { -webkit-transform: rotate(360deg);}
+}
+
+@keyframes spin {
+    from { transform: scale(1) rotate(0deg);}
+    to { transform: scale(1) rotate(360deg);}
+}
+ 
+
+
+.loader_aprobada{
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width:  60px;
+  height: 60px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+
+
+}
+
+.test li.hr {
+
+       border-top: 1px solid #eeeeee !important;
+       margin-bottom:5px !important; 
+       margin-top:5px !important;
+ 
+
+}
+
+.lista_preguntas{
+
+  -webkit-overflow-scrolling: touch;
+   scroll-behavior: smooth; // Added in from answer from Felix
+   overflow-x: scroll;
+   border-top: 1px solid #eeeeee !important;
+   margin-bottom:5px !important; 
+   margin-top:5px !important;
+
+}
+
+
+.form_dimension{
+   display: block;
+   vertical-align: middle;
+   height: 34px;
+   padding: 6px 12px;
+
+
+}
+
+
+.logo_encabezado{
+  margin-left: 50px; 
+  margin-top: 10px;
+
+
+}
+
+.resumen_grafica{
+  height:230px;
+  margin:0 auto;
+  min-width:330px;
+  max-width:600px;
+  margin-left:-10px;
+
+}
+
+.resumen_grafica_0{
+  height:230px;
+  margin:0 auto;
+  min-width:330px;
+  max-width:600px;
+  margin-left:-10px;
+  display: none;
+
+
+  }
+
+  .indice_general{
+    min-width: 310px; 
+    max-width: 800px; 
+    margin:0 auto;
+    height:200px;
+  }
+
+  .texto_encabezado{
+   color: white; 
+   font-size: 14px;
+
+  }
+

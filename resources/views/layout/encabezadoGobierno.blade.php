@@ -1,0 +1,1 @@
+<img src="/img/ministerio/logo_ministerio_desarroll_social.gif" alt="Imagen encabezado del Logo Senadis" class="logo_encabezado">
